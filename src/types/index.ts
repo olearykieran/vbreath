@@ -1,7 +1,7 @@
 export interface Level {
   id: number;
   name: string;
-  meshType: 'sphere' | 'torus' | 'icosahedron' | 'octahedron' | 'dodecahedron';
+  meshType: "sphere" | "torus" | "icosahedron" | "octahedron" | "dodecahedron";
   inhaleDur: number;
   exhaleDur: number;
   rounds?: {
@@ -32,7 +32,7 @@ export interface UserProgress {
 export interface User {
   id: string;
   email: string;
-  tier: 'free' | 'pro';
+  tier: "free" | "pro";
   createdAt: string;
 }
 
@@ -43,7 +43,11 @@ export interface BreathState {
   isPlaying: boolean;
   isInhaling: boolean;
   isPremiumUnlocked: boolean;
-  
+  inhaleSec: number; // default: 4
+  exhaleSec: number; // default: 6
+  setInhaleSec: (sec: number) => void;
+  setExhaleSec: (sec: number) => void;
+
   currentLevel: () => Level | undefined;
   initializeLevels: () => void;
   setCurrentLevelId: (id: number) => void;
@@ -63,7 +67,7 @@ export interface AudioControllerState {
   sfxVolume: number;
   isMusicMuted: boolean;
   isSfxMuted: boolean;
-  
+
   setMusicVolume: (volume: number) => void;
   setSfxVolume: (volume: number) => void;
   toggleMusicMute: () => void;
